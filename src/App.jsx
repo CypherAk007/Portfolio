@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Skills from './components/Skills';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Experience from './components/Experience';
+import Projects from './components/Projects';
 
 const Body = styled.div`
   background-color:${({theme}) => theme.bg};
@@ -28,8 +30,9 @@ const App = ()=>{
         <HeroSection></HeroSection>
         <Wrapper>
         <Skills></Skills>
-
+        <Experience></Experience>
         </Wrapper>
+        <Projects></Projects>
       </Body>
       </Router>
     </ThemeProvider>
