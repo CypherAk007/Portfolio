@@ -106,7 +106,7 @@ export const CardContainer = styled.div`
     // }
 `;
 
-const Projects = ()=>{
+const Projects = ({openModal,setOpenModal})=>{
     const [toggle,setToggle] = useState("all");
     return(
         <Container id="projects">
@@ -144,12 +144,12 @@ const Projects = ()=>{
                 <CardContainer>
                     {/* ******Project rendering according to catogery Logic**** */}
                     {toggle ==='all' && 
-                        projects.map((project)=><ProjectCard project={project}></ProjectCard>
+                        projects.map((project)=><ProjectCard project={project} openModal={openModal} setOpenModal={setOpenModal}></ProjectCard>
                     )}
                     {projects
                         .filter((item)=>item.category===toggle)
                         .map((project)=>(
-                            <ProjectCard project={project}></ProjectCard>
+                            <ProjectCard project={project} project={project} openModal={openModal} setOpenModal={setOpenModal}></ProjectCard>
                         ))
                         }
                 </CardContainer>

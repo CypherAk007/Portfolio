@@ -10,6 +10,8 @@ import Projects from './components/Projects';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ProjectDetails from './components/ProjectDetails';
+import { useState } from 'react';
 
 const Body = styled.div`
   background-color:${({theme}) => theme.bg};
@@ -24,6 +26,9 @@ const Wrapper = styled.div`
   clip-path: polygon(0 0, 100% 0, 100% 100%,30% 98%, 0 100%);
 `
 const App = ()=>{
+  const [darkMode, setDarkMode] = useState(true);
+  const [openModal, setOpenModal] = useState({ state: false, project: null });
+  console.log(openModal)
   return (
     <ThemeProvider theme={darkTheme}>
       <Router>
@@ -35,12 +40,15 @@ const App = ()=>{
         <Skills></Skills>
         <Experience></Experience>
         </Wrapper>
-        <Projects></Projects>
+        <Projects openModal={openModal} setOpenModal={setOpenModal}></Projects>
         <Wrapper>
           <Education></Education>
           <Contact></Contact>
         </Wrapper>
         <Footer></Footer>
+        {openModal.state &&
+            <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
+          }
       </Body>
       </Router>
     </ThemeProvider>
