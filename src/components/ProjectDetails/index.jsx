@@ -2,6 +2,7 @@ import { CloseRounded, GitHub, LinkedIn } from '@mui/icons-material';
 import { Modal } from '@mui/material';
 import React from 'react'
 import styled from 'styled-components'
+import SimpleImageSlider from 'react-simple-image-slider'
 
 const Container = styled.div`
 width: 100%;
@@ -181,6 +182,14 @@ const Button = styled.a`
     }
 `;
 
+const SliderWrapper = styled.div`
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+`
 
 const ProjectDetails = ({ openModal, setOpenModal }) => {
     const project = openModal?.project;
@@ -197,7 +206,19 @@ const ProjectDetails = ({ openModal, setOpenModal }) => {
                         }}
                         onClick={() => setOpenModal({ state: false, project: null })}
                     />
-                    <Image src={project?.image} />
+                    {project.sliderImages &&
+                    <SliderWrapper>
+
+                        <SimpleImageSlider
+                        width={"85%"}
+                        height={350}
+                        images={project.sliderImages}
+                        showNavs={true}
+                        />
+                        </SliderWrapper>
+                    }
+                    {!project.sliderImages && 
+                    <Image src={project?.image} />}
                     <Title>{project?.title}</Title>
                     <Date>{project.date}</Date>
                     <Tags>
